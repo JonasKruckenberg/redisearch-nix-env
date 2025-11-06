@@ -257,6 +257,9 @@
 
               # Tell valgrind about the suppression file
               export VALGRINDFLAGS="--suppressions=$PWD/valgrind.supp"
+
+              # Needed to build speedb from source
+              export NIX_CFLAGS_COMPILE="-Wno-error=format-truncation $NIX_CFLAGS_COMPILE"
             '';
 
             buildInputs = with pkgs; [
