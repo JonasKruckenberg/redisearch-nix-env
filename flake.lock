@@ -71,11 +71,11 @@
     "redis": {
       "flake": false,
       "locked": {
-        "lastModified": 1762160390,
-        "narHash": "sha256-RS1DCtWZGNYhcJmac/xpqyAt9dORc9iPPdNWjWhdlEY=",
+        "lastModified": 1764445318,
+        "narHash": "sha256-kQWnvJabvnXH9Uwa4tDz7iFhLnIIUCbmTsz4gPsnXDw=",
         "owner": "redis",
         "repo": "redis",
-        "rev": "e436a0e54849e91cba8c2e2aadd14e8e46b6b703",
+        "rev": "86c63588b017b0341600b9ffbc4f2382b207906c",
         "type": "github"
       },
       "original": {
@@ -96,11 +96,11 @@
         "redis": "redis"
       },
       "locked": {
-        "lastModified": 1762247143,
-        "narHash": "sha256-k7F1wEXRNDgx20KHQhhy2QLkWqNTKfFDSDoGWbtZWj0=",
+        "lastModified": 1764774096,
+        "narHash": "sha256-8dh9GnmGcbC2ChDsNyzJtY1i1wPsUvd35vl+KtnipRA=",
         "owner": "chesedo",
         "repo": "redis-flake",
-        "rev": "83df0f44677c68d11729cf830d4f2320cc10f8fe",
+        "rev": "e386f8dfc520dff2edb7f0973610898c8962ee5f",
         "type": "github"
       },
       "original": {
