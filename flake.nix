@@ -296,9 +296,6 @@
               # For redisbench-admin
               ftsb
               memtier-benchmark
-
-              # For search on disk
-              liburing
             ];
 
             packages = with pkgs; [
