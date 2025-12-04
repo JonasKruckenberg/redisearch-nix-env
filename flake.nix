@@ -319,6 +319,8 @@
               (rust-bin.selectLatestNightlyWith (toolchain: toolchain.default.override {
                 extensions = [ "rust-src" "miri" "llvm-tools-preview" ];
               }))
+
+              llvmPackages.bintools
             ];
 
             packages = with pkgs; [
