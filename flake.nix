@@ -309,6 +309,30 @@
 
           nightly = pkgs.mkShell {
             hardeningDisable = [ "fortify" "stackprotector" "pic" "relro" ];
+            # Shell hooks to create executable scripts in a local bin directory
+            shellHook = ''
+              cargo_version=$(cargo --version 2>/dev/null)
+
+              echo -e "\033[1;36m=== 🦀 Welcome to the RediSearch development NIGHTLY environment ===\033[0m"
+              echo -e "\033[1;33m• $cargo_version\033[0m"
+
+              # For libclang dependency to work
+              export LIBCLANG_PATH="${pkgs.llvmPackages.libclang.lib}/lib"
+              # For `sys/types.h` and `stddef.h` required by redismodules-rs
+              export BINDGEN_EXTRA_CLANG_ARGS="-I${pkgs.glibc.dev}/include -I${pkgs.gcc-unwrapped}/lib/gcc/x86_64-unknown-linux-gnu/14.3.0/include"
+
+              # Force SVS to build from source instead of using precompiled library
+              export CMAKE_ARGS="-DSVS_SHARED_LIB=OFF"
+
+              # Tell getpy3 to use our Nix Python directly, skipping version detection and PEP_668 logic
+              export MYPY="${pkgs.python3}/bin/python3"
+
+              # Tell valgrind about the suppression file
+              export VALGRINDFLAGS="--suppressions=$PWD/valgrind.supp"
+
+              # Needed to build speedb from source
+              export NIX_CFLAGS_COMPILE="-Wno-error=format-truncation $NIX_CFLAGS_COMPILE"
+            '';
 
             buildInputs = with pkgs; [
               # Dev dependencies based on developer.md
@@ -316,10 +340,27 @@
               openssl.dev
               libxcrypt
 
+              # To run the unit tests
+              gtest.dev
+
+              # Python environment for integration tests
+              pythonEnv
+
+              # Needed by python tests
+              wget
+
+              # Redis with ASAN support for nightly testing
+              (redis-source.overrideAttrs (old: {
+                makeFlags = (old.makeFlags or []) ++ [
+                  "SANITIZER=address"
+                ];
+              }))
+
               (rust-bin.selectLatestNightlyWith (toolchain: toolchain.default.override {
                 extensions = [ "rust-src" "miri" "llvm-tools-preview" ];
               }))
 
+              # To resolve ASAN symbols
               llvmPackages.bintools
             ];
 
