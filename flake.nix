@@ -291,7 +291,9 @@
               valgrind
               kdePackages.kcachegrind
 
-              cargo-valgrind
+              cargo-valgrind = pkgs.cargo-valgrind.overrideAttrs(old: {
+                doCheck = false;
+              });
 
               # For redisbench-admin
               ftsb
