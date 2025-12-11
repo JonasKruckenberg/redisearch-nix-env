@@ -333,6 +333,8 @@
 
               # Needed to build speedb from source
               export NIX_CFLAGS_COMPILE="-Wno-error=format-truncation $NIX_CFLAGS_COMPILE"
+
+              export ASAN_OPTIONS="detect_odr_violation=0"
             '';
 
             buildInputs = with pkgs; [
