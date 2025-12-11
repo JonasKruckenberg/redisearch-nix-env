@@ -302,6 +302,7 @@
               rust-analyzer
               cargo-watch
               cargo-outdated
+              cargo-nextest
               lldb
               vscode-extensions.vadimcn.vscode-lldb
             ];
@@ -366,6 +367,7 @@
 
             packages = with pkgs; [
               cargo-llvm-cov
+              cargo-nextest
               lcov
             ];
           };
