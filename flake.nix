@@ -231,9 +231,9 @@
           ml-dtypes
         ]);
 
-        #cargo-valgrind = pkgs.cargo-valgrind.overrideAttrs(old: {
-        #  doCheck = false; # currently the tests fail when building from source. TODO investigate why
-        #});
+        cargo-valgrind = pkgs.cargo-valgrind.overrideAttrs(old: {
+          doCheck = false; # currently the tests fail when building from source. TODO investigate why
+        });
       in
       {
         devShells = {
