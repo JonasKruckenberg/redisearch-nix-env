@@ -308,6 +308,7 @@
               cargo-nextest
               lldb
               vscode-extensions.vadimcn.vscode-lldb
+              cargo-hakari
             ];
           };
 
