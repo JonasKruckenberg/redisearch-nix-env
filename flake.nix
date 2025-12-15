@@ -306,9 +306,9 @@
               cargo-watch
               cargo-outdated
               cargo-nextest
+              cargo-hakari
               lldb
               vscode-extensions.vadimcn.vscode-lldb
-              cargo-hakari
             ];
           };
 
